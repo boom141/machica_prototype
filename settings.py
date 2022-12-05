@@ -1,6 +1,5 @@
 from flask import Flask
 from datetime import timedelta
-from mongo_init import*
 
 def create_app():
     app = Flask(__name__)

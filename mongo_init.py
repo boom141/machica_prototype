@@ -16,7 +16,7 @@ def add_users(firstname,lastname,gender,phonenumber,email,password):
         'first_name':firstname,
         'last_name': lastname,
         'gender': gender,
-        'phone_number': phonenumber,
+        'phone_number': int(phonenumber),
         'email': email,
         'password': password 
         }
@@ -28,11 +28,12 @@ def add_orders(firstname,lastname,phonenumber,email,product,quantity,msg):
     orders = {
         'first_name':firstname,
         'last_name': lastname,
-        'phone_number': phonenumber,
+        'phone_number': int(phonenumber),
         'email': email,
         'product': product,
         'quantity': quantity,
-        'msg': msg
+        'msg': msg,
+        'payment_option': 'over the counter'
     }
 
     return orders
@@ -43,7 +44,7 @@ def add_booking(firstname,lastname,phonenumber,email,date,time,poa,msg):
     booking = {
         'first_name':firstname,
         'last_name': lastname,
-        'phone_number': phonenumber,
+        'phone_number': int(phonenumber),
         'email': email,
         'date': date,
         'time': time,
