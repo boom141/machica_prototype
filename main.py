@@ -118,8 +118,8 @@ def otp():
                 return redirect(url_for('register', error=False))
 
         else:
-            user_otp = request.form['otp']
-
+            user_otp = request.form['user-otp']
+   
             if user_otp == session_register['otp']:
 
                 new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
