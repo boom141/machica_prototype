@@ -76,12 +76,27 @@ def register(error):
         else:
             return render_template('register.html', user_in_session = None)
 
-@app.route('/otp', methods=['POST','GET'])
+@app.route('/otp', methods=['POST'])
 def otp():
     if 'user' in session:
         return redirect(url_for('landing'))
     else:
-        if not request.method == 'POST':
+        if request.method == 'POST':
+            user_otp = request.form['user-otp']
+   
+            if user_otp == session_register['otp']:
+
+                new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
+                ,session_register['phone_number'],session_register['user_email'],session_register['password'])
+                machica_users.insert_one(new_user)
+
+                flash('Your account is officially registered!')
+                return render_template('otp.html', user_in_session = None, email=session_register['user_email'])
+            else:
+                flash(' You entered a wrong OTP, try again')
+                return redirect(url_for('register', error=403))
+
+        else:
             try:
                 generated_otp = ''
                 for i in range(4):
@@ -116,21 +131,6 @@ def otp():
             
             except:
                 return redirect(url_for('register', error=False))
-
-        else:
-            user_otp = request.form['user-otp']
-   
-            if user_otp == session_register['otp']:
-
-                new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
-                ,session_register['phone_number'],session_register['user_email'],session_register['password'])
-                machica_users.insert_one(new_user)
-
-                flash('Your account is officially registered!')
-                return render_template('otp.html', user_in_session = None, email=session_register['user_email'])
-            else:
-                flash(' You entered a wrong OTP, try again')
-                return redirect(url_for('register', error=403))
 
 @app.route('/appointment', methods=['POST','GET'])
 def appointment():  
