@@ -76,7 +76,7 @@ def register(error):
         else:
             return render_template('register.html', user_in_session = None)
 
-@app.route('/otp', methods=['POST','GET])
+@app.route('/otp', methods=['POST','GET'])
 def otp():
     if 'user' in session:
         return redirect(url_for('landing'))
