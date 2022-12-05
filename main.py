@@ -98,7 +98,7 @@ def otp():
                     return redirect(url_for('register', error=403))
             except KeyError:
                 print('keyerror')
-                return redirect(url_for('register', error=403))
+                return redirect(url_for('register', error=404))
         else:
             try:
                 generated_otp = ''
@@ -263,5 +263,5 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run() 
    
