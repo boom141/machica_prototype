@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 from flask import Flask, redirect,url_for,render_template,session,request,flash
 from mongo_init import*
 from settings import app
-session_register = {}
+session_register = {'verify-otp':0}
 
 @app.route('/', methods=['POST','GET'])
 def landing():
@@ -85,7 +85,7 @@ def otp():
             user_otp = request.form['user-otp']
             
             try:
-                if user_otp == session_register['otp']:
+                if user_otp == session_register['verify-otp']:
 
                     new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
                     ,session_register['phone_number'],session_register['user_email'],session_register['password'])
@@ -96,6 +96,7 @@ def otp():
                 else:
                     flash(' You entered a wrong OTP, try again')
                     return redirect(url_for('register', error=403))
+
             except KeyError:
                 print('keyerror')
                 return redirect(url_for('register', error=404))
@@ -105,7 +106,7 @@ def otp():
                 for i in range(4):
                     generated_otp += str(random.randint(0,9))
 
-                session_register['otp'] = generated_otp
+                session_register['verify-otp'] = generated_otp
                 mail_content = f"YOU'RE OTP PIN IS: {generated_otp}"
                 #The mail addresses and password
                 sender_address = 'otpsender47@gmail.com'
@@ -263,5 +264,5 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run() 
+    app.run(debug=True) 
    
