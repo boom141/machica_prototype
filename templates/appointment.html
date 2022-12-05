@@ -1,0 +1,86 @@
+{%extends "base.html"%}
+{%block title%}book online{%endblock%}
+
+{%block content%}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="bg-modal">
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="icon-box">
+                                    <i class="material-icons">&#xE876;</i>
+                                </div>				
+                                <h4 class="modal-title w-100">Awesome!</h4>	
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center">{{message}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-success btn-block btn-dark" data-dismiss="modal" onclick="appointment_page()">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+
+    <div class="nav-bg"></div>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 border p-4 shadow bg-light">
+                    <div class="col-12">
+                        <h3 class="fw-normal text-secondary fs-4  mb-4" style="color: black!important;">Appointment form</h3>
+                    </div>
+                    <form method="post" action="">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="first-name" placeholder="First name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="last-name" placeholder="Last name">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" name="phone-number" placeholder="Phone number#">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" name="email" placeholder="Email">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="date" class="form-control" name="date" placeholder="Enter date">
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-select" name = "time">
+                                    <option selected>Select time</option>
+                                    <option value="time 1">time 1</option>
+                                    <option value="time 2">time 2</option>
+                                    <option value="time 3">time 3</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <select class="form-select" name = "POA">
+                                    <option selected>Purpose Of Appointment</option>
+                                    <option value="Service 1">Service 1</option>
+                                    <option value="Service 2">Service 2</option>
+                                    <option value="Service 3">Service 3</option>
+                                    <option value="Service 4">Service 4</option>
+                                    <option value="Service 5">Service 5</option>
+                                    <option value="Service 6">Service 6</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                            </div>
+                            <div class="col-12 mt-5">                        
+                                <button type="submit" class="btn btn-primary float-end">Book Appointment</button>
+                                <button type="button" class="btn btn-outline-secondary float-end me-2"><a href="{{url_for('landing')}}" class="form-cancel">Cancel</a></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+{%endblock%}

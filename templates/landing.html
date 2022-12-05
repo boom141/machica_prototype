@@ -1,0 +1,161 @@
+{%extends "base.html"%}
+{%block title%}Machica Dental Clinic{%endblock%}
+
+{%block content%}
+<section class="section-attrib">
+    <div id="home" class="section-content section-1">
+        <div class="content-img">
+            <img class="home-logo" src="{{url_for('static', filename='images/home-logo.png')}}" alt="">
+            <img class="home-divider" src="{{url_for('static', filename='images/home_rec.png')}}" alt="">
+        </div>
+        <div class="site-name">
+            <p>Machica
+               Dental
+               Clinic
+            </p>
+            <div class="site-buttons">
+                <div class="site-btn book-online"><a href="{{url_for('appointment')}}" style="font-weight:500">Book Online</a></div>
+                <div class="site-btn contact-us"><a href="#contacts" style="font-weight:500">Contact Us</a></div>
+            </div>
+        </div>
+        <div class="home-doctor">
+            <img src="{{url_for('static', filename='images/doctor_logo.png')}}" alt="">
+        </div>
+    </div>
+</section>
+<section id="about" class="section-attrib">
+    <div class="section-content section-2">
+        <div class="content-img content-attrib">
+            <img class="about-img" src="{{url_for('static', filename='images/about-img.jpg')}}" alt="">
+            <img class="about-divider" src="{{url_for('static', filename='images/about-divider.png')}}" alt="">
+        </div>
+        <div class="site-about">
+            <h1><span style="color: #003A33">"Your smile</span> is our passion"</h1><br>
+            <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                <br>
+                <br>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+                The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, 
+                content here', making it look like readable English.
+            </p>
+            <div class="site-buttons">
+                <div class="site-btn book-online"><a href="#" style="font-weight:500">read more...</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="services" class=" section-attrib section-position-3">
+    <div class="section-content-services section-3">
+        <h1><span style="color: #003A33">Dental</span> Services</h1>
+        <div class="list-services">   
+            <div class="service-type">
+                <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
+                <h5 class="h5-service"><span style="color: #003A33">Service</span> One</h5>
+                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+            <div class="service-type">
+                <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
+                <h5 class="h5-service"><span style="color: #003A33">Service</span> Two</h5>
+                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+            <div class="service-type">
+                <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
+                <h5 class="h5-service"><span style="color: #003A33">Service</span> Three</h5>
+                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+            <div class="service-type">
+                <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
+                <h5 class="h5-service"><span style="color: #003A33">Service</span> Four</h5>
+                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+            <div class="service-type">
+                <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
+                <h5 class="h5-service"><span style="color: #003A33">Service</span> Five</h5>
+                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+            <div class="service-type">
+                <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
+                <h5 class="h5-service"><span style="color: #003A33">Service</span> Six</h5>
+                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="products" class="section-attrib">
+    <div class="section-content section-4">
+        <div class="horizontal-product">
+            <div class="site-products">
+                  <h1>Products</h1>
+                  <img src="{{url_for('static', filename='images/product-logo.png')}}" alt="">
+            </div>
+            <div class="pr-entity pr-1">
+                <div class="site-order">
+                     <h2>Dental Floss</h2>
+                <div class="site-buttons">
+                    <div class="site-btn contact-us pre-order-btn on-hover"><a href="{{url_for('order')}}" style="font-weight:500">pre-order</a></div>
+                </div>
+                </div>
+            </div>
+            <div class="pr-entity pr-2">
+                <div class="site-order">
+                     <h2>Toothpaste</h2>
+                <div class="site-buttons">
+                    <div class="site-btn contact-us pre-order-btn on-hover"><a href="{{url_for('order')}}" style="font-weight:500">pre-order</a></div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="pr-entity pr-3">
+            <div class="site-order site-order-vertical">
+                <h2>Toothbrush</h2>
+           <div class="site-buttons">
+               <div class="site-btn contact-us pre-order-btn-vertical on-hover"><a href="{{url_for('order')}}" style="font-weight:500">pre-order</a></div>
+           </div>
+           </div>
+        </div>
+    </div>
+</section>
+<section id="contacts" class="section-attrib">
+    <div class="section-content section-5">
+       <div class="site-trademark">
+            <img class="trademark-logo" src="{{url_for('static', filename='images/nav_logo.png')}}" alt="">
+            <img class="trademark-divider" src="{{url_for('static', filename='images/trademark-divider.png')}}" alt="">
+            <h6>Unit #1, G/F Aspiras Building, Consolacion Street</h6>
+            <div class="soc-med">
+                <a href="#">
+                    <img src="{{url_for('static', filename='images/facebook.png')}}" alt="">
+                </a>
+                <a href="#">
+                    <img src="{{url_for('static', filename='images/instagram.png')}}" alt="">
+                </a>
+                <a href="#">
+                    <img src="{{url_for('static', filename='images/twitter.png')}}" alt="">
+                </a>
+            </div>
+        </div>
+        <img class="form-img" src="{{url_for('static', filename='images/form-img.jpg')}}" alt="">
+        <form method="post" action="">
+            <h4>Inquiry? Chat us.</h4>
+            <input class="query-email" type="email" name="email" id="query-email" placeholder="Email">
+            <textarea class="query-message" name="message" id="query-message" placeholder="Message" rows="4" cols="50"></textarea>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                        <strong>Success!</strong>{{message}}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <button class="site-btn" type="submit">Send mail</button>
+        </form>
+    </div>
+</section>
+<section id="section-6" class="section-attrib">
+    <div class="section-content section-6">
+        <h6>Copyright © Machica Dental CLinic 2022</h6>
+    </div>
+</section>
+{%endblock%}

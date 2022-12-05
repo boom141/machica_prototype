@@ -1,0 +1,33 @@
+.row>* {
+    margin-top: 1rem;
+}
+
+.img-fluid2{
+    height:46.35rem;
+    margin-top: 4rem;
+}
+
+.form-register{
+    height: 46rem;
+    width: 25rem;
+    margin-top: 1.1rem;
+    border-radius: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.538);
+    padding: 17px;
+}
+
+h5{
+    margin-left: -11rem;
+}
+
+.alert-warning {
+    color: #fa0000;
+    background-color: #f8a8a8;
+    border-color: #f8a8a8;
+    height: 4rem;
+    margin-bottom: -2rem;
+}
+
+.alert-dismissible {
+    font-size: 13px;
+}

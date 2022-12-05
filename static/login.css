@@ -1,0 +1,88 @@
+.nav-bg{
+    width: 100%;
+    height: 5rem;
+    background-color: #003A33;
+}
+
+.card{
+    margin-top: 6rem;
+    text-align: center;
+    border: none;
+    margin-left: 5rem;
+}
+
+.vh-100 {
+    height: 5rem!important;
+    background-color: #003A33!important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.538);
+}
+
+.fw-bold{
+    color: black;
+    font-weight: 400!important;
+    margin-left: 1rem;
+}
+
+.form-login span {
+    display: flex;
+    flex-direction: row;
+    width: 26rem;
+    justify-content: center;
+    text-align: center;
+    margin-left: -0.5rem;
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #003A33;
+    border-color: #003A33;
+    width: -webkit-fill-available;
+    margin-top: 2rem;
+}
+
+
+.btn-dark:hover{
+    background-color: #002823;
+}
+
+.text-muted {
+    color: black!important;
+}
+
+.small {
+    font-size: 22px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.form-control-lg {
+    border-radius: .3rem;
+    border: 2px solid #003A33;
+}
+
+.form-login {
+    height: 37rem;
+    width: 23rem;
+    margin-top: -3.5rem;
+    border-radius: 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.538);
+    padding: 17px;
+}
+
+.mb-3 {
+    margin-top: 3rem;
+}
+
+.img-fluid {
+    height: 37.1rem;
+    max-width: 263%;
+    margin-left: -9rem;
+}
+
+img, svg {
+    margin-top: -8px;
+}
+
+.h5-label{
+    margin-left: -7.5rem;
+}

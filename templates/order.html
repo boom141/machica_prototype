@@ -1,0 +1,78 @@
+{%extends "base.html"%}
+{%block title%}pre-order{%endblock%}
+
+{%block content%}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="bg-modal">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="icon-box">
+                            <i class="material-icons">&#xE876;</i>
+                        </div>				
+                        <h4 class="modal-title w-100">Awesome!</h4>	
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">{{message}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btn-block btn-dark" data-dismiss="modal" onclick="order_page()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+
+<div class="nav-bg"></div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 border p-4 shadow bg-light">
+                <div class="col-12">
+                    <h3 class="fw-normal text-secondary fs-4  mb-4" style="color: black!important;">Order form</h3>
+                </div>
+                <form method="post" action="">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="first-name" placeholder="First name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="last-name" placeholder="Last name">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" class="form-control" name="phone-number" placeholder="Phone number#">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" name="email" placeholder="Email">
+                        </div>
+                        <div class="col-12">
+                            <select name="pr-name" class="form-select">
+                                <option selected>Product name</option>
+                                <option value="Dental floss">Dental floss</option>
+                                <option value="Toothbrush">Toothbrush</option>
+                                <option value="Toothpaste">Toothpaste</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="quantity" placeholder="Quantity">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-normal text-secondary fs-4  mb-4 payment-option" style="color: black!important;">Payment option:<span style="color: red;"> Over the counter</span></h6>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" name="message" placeholder="Message"></textarea>
+                        </div>
+                        <div class="col-12 mt-5">                        
+                            <button type="submit" class="btn btn-primary float-end">Place order</button>
+                            <button type="button" class="btn btn-outline-secondary float-end me-2"><a href="{{url_for('landing')}}" class="form-cancel">Cancel</a></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{%endblock%}
