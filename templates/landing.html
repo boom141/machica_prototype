@@ -119,38 +119,42 @@
 </section>
 <section id="contacts" class="section-attrib">
     <div class="section-content section-5">
-       <div class="site-trademark">
-            <img class="trademark-logo" src="{{url_for('static', filename='images/nav_logo.png')}}" alt="">
-            <img class="trademark-divider" src="{{url_for('static', filename='images/trademark-divider.png')}}" alt="">
-            <h6>Unit #1, G/F Aspiras Building, Consolacion Street</h6>
-            <div class="soc-med">
-                <a href="#">
-                    <img src="{{url_for('static', filename='images/facebook.png')}}" alt="">
-                </a>
-                <a href="#">
-                    <img src="{{url_for('static', filename='images/instagram.png')}}" alt="">
-                </a>
-                <a href="#">
-                    <img src="{{url_for('static', filename='images/twitter.png')}}" alt="">
-                </a>
+        <div class="contact-div">
+            <div class="site-trademark">
+                <img class="trademark-logo" src="{{url_for('static', filename='images/nav_logo.png')}}" alt="">
+                <img class="trademark-divider" src="{{url_for('static', filename='images/trademark-divider.png')}}" alt="">
+                <h6>Unit #1, G/F Aspiras Building, Consolacion Street</h6>
+                <div class="soc-med">
+                    <a href="#">
+                        <img src="{{url_for('static', filename='images/facebook.png')}}" alt="">
+                    </a>
+                    <a href="#">
+                        <img src="{{url_for('static', filename='images/instagram.png')}}" alt="">
+                    </a>
+                    <a href="#">
+                        <img src="{{url_for('static', filename='images/twitter.png')}}" alt="">
+                    </a>
+                </div>
             </div>
-        </div>
-        <img class="form-img" src="{{url_for('static', filename='images/form-img.jpg')}}" alt="">
-        <form method="post" action="">
-            <h4>Inquiry? Chat us.</h4>
-            <input class="query-email" type="email" name="email" id="query-email" placeholder="Email">
-            <textarea class="query-message" name="message" id="query-message" placeholder="Message" rows="4" cols="50"></textarea>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert alert-success" role="alert">
-                        <strong>Success!</strong>{{message}}
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <button class="site-btn" type="submit">Send mail</button>
-        </form>
+            <div class="form-contact">
+                <img class="form-img" src="{{url_for('static', filename='images/form-img.jpg')}}" alt="">
+                <form method="post" action="">
+                    <h4>Inquiry? Chat us.</h4>
+                    <input class="query-email" type="email" name="email" id="query-email" placeholder="Email">
+                    <textarea class="query-message" name="message" id="query-message" placeholder="Message" rows="4" cols="50"></textarea>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                            <div class="alert alert-success" role="alert">
+                                <strong>Success!</strong>{{message}}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <button class="site-btn" type="submit">Send mail</button>
+                </form>
+           </div>
+        </div>            
     </div>
 </section>
 <section id="section-6" class="section-attrib">

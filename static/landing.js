@@ -1,6 +1,6 @@
 var navbar = document.getElementById("navbar");
 const nav_links = document.querySelectorAll('.mx-2')
-let landing_urls = [window.origin,`${window.origin}/#home`,`${window.origin}/#about`,`${window.origin}/#services`,`${window.origin}/#products`,]
+let landing_urls = [`${window.origin}/#home`,`${window.origin}/#about`,`${window.origin}/#services`,`${window.origin}/#products`,]
 
 
 function getCurrentURL () {
@@ -8,14 +8,14 @@ function getCurrentURL () {
 }
 
 
-for(let i=0; i<nav_links.length-2; i++){
-  nav_links[i].addEventListener('click',()=>{
-    if(!landing_urls.includes(String(getCurrentURL()))){
-        window.location = window.origin
-    }
-  })
-}
-
+// for(let i=0; i<nav_links.length-2; i++){
+//     nav_links[i].addEventListener('click',()=>{
+//       if(window.location.href != window.origin){
+//           window.location = window.origin
+//       }
+//   })
+// }
+  
 
 var sticky = navbar.offsetTop;
 
@@ -26,7 +26,6 @@ window.onscroll = function() {
     navbar.classList.remove("sticky");
   }
 
-  if(landing_urls.includes(String(getCurrentURL()))){
   if(window.pageYOffset >= 0 && window.pageYOffset < 600){
     active_onscroll(0)
   }else if (window.pageYOffset >=600 && window.pageYOffset < 1180){
@@ -38,9 +37,7 @@ window.onscroll = function() {
   }else{
     active_onscroll(-1)
   }
-  }
-
-};
+}
 
 
 function active_onscroll(index){
