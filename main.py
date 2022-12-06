@@ -91,22 +91,18 @@ def otp():
         if request.method == 'POST':
             user_otp = request.form['user-otp']
             
-            try:
-                if user_otp == session_register['gen-otp']:
+            if user_otp == session_register['gen-otp']:
 
-                    new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
-                    ,session_register['phone_number'],session_register['user_email'],session_register['password'])
-                    machica_users.insert_one(new_user)
+                new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
+                ,session_register['phone_number'],session_register['user_email'],session_register['password'])
+                machica_users.insert_one(new_user)
 
-                    flash('Your account is officially registered!')
-                    return render_template('otp.html', user_in_session = None, email=session_register['user_email'])
-                else:
-                    flash(' You entered a wrong OTP, try again')
-                    return redirect(url_for('register', error=403))
-
-            except KeyError:
-                print('keyerror')
-                return redirect(url_for('register', error=404))
+                flash('Your account is officially registered!')
+                return render_template('otp.html', user_in_session = None, email=session_register['user_email'])
+            else:
+                flash(' You entered a wrong OTP, try again')
+                return redirect(url_for('register', error=403))
+                
         else:
             try:
                 mail_content = f"YOU'RE OTP PIN IS: {session_register['gen-otp']}"
