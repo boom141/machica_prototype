@@ -5,7 +5,6 @@ from flask import Flask, redirect,url_for,render_template,session,request,flash
 from waitress import serve
 from mongo_init import*
 from settings import app
-session_register = {}
 
 @app.route('/', methods=['POST','GET'])
 def landing():
@@ -56,25 +55,25 @@ def register(error):
         return redirect(url_for('landing'))
     else:
         if request.method == 'POST':
-            session_register['firstname'] = request.form['first-name']
-            session_register['lastname'] = request.form['last-name']
-            session_register['gender'] = request.form['gender']
-            session_register['phone_number'] = request.form['phone-number']
-            session_register['user_email'] = request.form['email']
-            session_register['password' ]= request.form['password']
-            session_register['confirm_password'] = request.form['confirm-password']
+            session['firstname'] = request.form['first-name']
+            session['lastname'] = request.form['last-name']
+            session['gender'] = request.form['gender']
+            session['phone_number'] = request.form['phone-number']
+            session['registered_email'] = request.form['email']
+            session['password' ]= request.form['password']
+            session['confirm_password'] = request.form['confirm-password']
 
             generated_otp = ''
             for i in range(4):
                 generated_otp += str(random.randint(0,9))
 
-            session_register['gen-otp'] = generated_otp
+            session['gen_otp'] = generated_otp
             
-            email_exist = machica_users.find_one({'email':session_register['user_email']})
+            email_exist = machica_users.find_one({'email':session['registered_email']})
             if email_exist:
                 flash(' Email is already taken, please use another email.')
                 return redirect(url_for('register', error=401))
-            elif session_register['password'] != session_register['confirm_password']:
+            elif session['password'] != session['confirm_password']:
                 flash(' Password repeatition is not validated.')
                 return redirect(url_for('register', error=402))
             else:
@@ -91,25 +90,29 @@ def otp():
         if request.method == 'POST':
             user_otp = request.form['user-otp']
             
-            if user_otp == session_register['gen-otp']:
+            if 'gen_otp' in session:
+                if user_otp == session['gen_otp']:
 
-                new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
-                ,session_register['phone_number'],session_register['user_email'],session_register['password'])
-                machica_users.insert_one(new_user)
+                    new_user = add_users(session['firstname'],session['lastname'],session['gender']
+                    ,session['phone_number'],session['registered_email'],session['password'])
+                    machica_users.insert_one(new_user)
 
-                flash('Your account is officially registered!')
-                return render_template('otp.html', user_in_session = None, email=session_register['user_email'])
+                    flash('Your account is officially registered!')
+                    return render_template('otp.html', user_in_session = None, email=session['registered_email'])
+
+                else:
+                    flash(' You entered a wrong OTP, try again')
+                    return redirect(url_for('register', error=403))
             else:
-                flash(' You entered a wrong OTP, try again')
+                flash(' Something is wrong in geenrating otp, try again')
                 return redirect(url_for('register', error=403))
-                
         else:
             try:
-                mail_content = f"YOU'RE OTP PIN IS: {session_register['gen-otp']}"
+                mail_content = f"YOU'RE OTP PIN IS: {session['gen_otp']}"
                 #The mail addresses and password
                 sender_address = 'otpsender47@gmail.com'
                 sender_pass = 'xisnpznnkhkhcbls'
-                receiver_address = session_register['user_email']
+                receiver_address = session['registered_email']
 
                 #Setup the MIME
                 message = MIMEMultipart()
@@ -129,7 +132,7 @@ def otp():
                 session_smtp.quit()
                 print('Mail Sent')
 
-                return render_template('otp.html', user_in_session = None, email=session_register['user_email'])
+                return render_template('otp.html', user_in_session = None, email=session['registered_email'])
             
             except:
                 return redirect(url_for('register', error=False))
@@ -141,7 +144,7 @@ def appointment():
             firstname = request.form['first-name']
             lastname = request.form['last-name']
             phone_number = request.form['phone-number']
-            email = request.form['email']
+            session['confirmation_email'] = request.form['email']
             date = request.form['date']
             time = request.form['time']
             poa = request.form['POA']
@@ -151,9 +154,9 @@ def appointment():
                 flash(' You should check in on some of those fields above.')
                 return render_template('appointment.html',  user_in_session = session['user'][0].upper())
             else:
-                new_booking = add_booking(firstname,lastname,phone_number,email,date,time,poa,msg if msg else None)
+                new_booking = add_booking(firstname,lastname,phone_number,session['confirmation_email'],date,time,poa,msg if msg else None)
                 machica_bookings.insert_one(new_booking)
-                return redirect(url_for('confirm', sender='booking_route', data=new_booking['email']))
+                return redirect(url_for('confirm', sender='booking_route'))
         else:
             return render_template('appointment.html',  user_in_session = session['user'][0].upper())
     else:
@@ -166,7 +169,7 @@ def order():
             firstname = request.form['first-name']
             lastname = request.form['last-name']
             phone_number = request.form['phone-number']
-            email = request.form['email']
+            session['confirmation_email'] = request.form['email']
             product = request.form['pr-name']
             quantity = request.form['quantity']
             msg = request.form['message']
@@ -175,9 +178,9 @@ def order():
                 flash(' You should check in on some of those fields above.')
                 return render_template('order.html',  user_in_session = session['user'][0].upper())
             else:
-                new_order = add_orders(firstname,lastname,phone_number,email,product,quantity,msg if msg else None)
+                new_order = add_orders(firstname,lastname,phone_number,session['confirmation_email'],product,quantity,msg if msg else None)
                 machica_orders.insert_one(new_order)
-                return redirect(url_for('confirm', sender='order_route', data=new_order['email']))
+                return redirect(url_for('confirm', sender='order_route'))
         else:
             return render_template('order.html',  user_in_session = session['user'][0].upper())
     else:
@@ -213,8 +216,8 @@ def inquiry(email,message):
     return redirect(url_for('landing'))
 
 
-@app.route('/email_confirmation/<sender>/<data>')
-def confirm(sender,data):
+@app.route('/email_confirmation/<sender>')
+def confirm(sender):
     mail_content = f"""
             <html>
             <body>
@@ -229,7 +232,7 @@ def confirm(sender,data):
     #The mail addresses and password
     sender_address = 'inquirymachica20@gmail.com'
     sender_pass = 'meqfxsvprfyejvwn'
-    receiver_address = data
+    receiver_address = session['confirmation_email']
     #Setup the MIME
     message = MIMEMultipart()
     message['From'] = sender_address
@@ -240,12 +243,12 @@ def confirm(sender,data):
     message.attach(MIMEText(mail_content, 'html'))
    
     #Create SMTP session for sending the mail
-    session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
-    session.starttls() #enable security
-    session.login(sender_address, sender_pass) #login with mail_id and password
+    session_confirm = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+    session_confirm.starttls() #enable security
+    session_confirm.login(sender_address, sender_pass) #login with mail_id and password
     text = message.as_string()
-    session.sendmail(sender_address, receiver_address, text)
-    session.quit()
+    session_confirm.sendmail(sender_address, receiver_address, text)
+    session_confirm.quit()
 
     if sender == 'order_route':
         flash('Your order has been confirmed. Check your email for details.')
@@ -258,7 +261,16 @@ def confirm(sender,data):
 @app.route('/logout')
 def logout():
     session.pop('user', None)
+    session.pop('confirmation_email',None)
+    session.pop('firstname', None)
+    session.pop('lastname', None)
+    session.pop('gender', None)
+    session.pop('phone_number', None)
+    session.pop('registered_email', None)
+    session.pop('password', None)
+    session.pop('confirm_password', None)
     return redirect(url_for('landing'))
+
 
 if __name__ == '__main__':
     serve(app, host='0.0.0.0', port=5500, threads=1, url_prefix='/machica') 
