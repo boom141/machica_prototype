@@ -48,7 +48,7 @@
                 {% if user_in_session != None %}
                     <div class="user-session" style="background-color: white; height: 27px; width: 27px; 
                     border-radius: 50%; text-align: center; padding-top: .2rem; margin-top: 1.5rem; margin-right: 1rem;
-                    margin-left: 2rem;"><a href="{{url_for('logout')}}" style="text-decoration: none;">
+                    margin-left: 2rem;"><a href="" style="text-decoration: none;">
                     <span style="color: #003A33; font-weight: 600;">{{user_in_session}}</span></a></div>
                     <img class="separator" src="{{url_for('static', filename='images/separator.png')}}" alt="">
                     <a class="nav-link mx-2 login" href="{{url_for('logout')}}">Log out</a>

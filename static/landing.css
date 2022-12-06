@@ -405,7 +405,7 @@ img, svg {
 .contact-div{
     background-color: #002438;
     display: flex;
-    width: 100vw;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
 }
