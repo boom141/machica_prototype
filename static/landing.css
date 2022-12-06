@@ -32,6 +32,10 @@ body {
     margin-left: -2rem;
 }
 
+.user-navigation{
+    margin-top: -1.2rem;
+}
+
 .container-fluid{
     display: flex;
     flex-direction: row;
