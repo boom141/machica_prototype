@@ -2,9 +2,10 @@ import smtplib,random
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from flask import Flask, redirect,url_for,render_template,session,request,flash
+from waitress import serve
 from mongo_init import*
 from settings import app
-session_register = {'verify-otp':0}
+session_register = {}
 
 @app.route('/', methods=['POST','GET'])
 def landing():
@@ -62,6 +63,12 @@ def register(error):
             session_register['user_email'] = request.form['email']
             session_register['password' ]= request.form['password']
             session_register['confirm_password'] = request.form['confirm-password']
+
+            generated_otp = ''
+            for i in range(4):
+                generated_otp += str(random.randint(0,9))
+
+            session_register['otp'] = generated_otp
             
             email_exist = machica_users.find_one({'email':session_register['user_email']})
             if email_exist:
@@ -85,7 +92,7 @@ def otp():
             user_otp = request.form['user-otp']
             
             try:
-                if user_otp == session_register['verify-otp']:
+                if user_otp == session_register['otp']:
 
                     new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
                     ,session_register['phone_number'],session_register['user_email'],session_register['password'])
@@ -102,12 +109,7 @@ def otp():
                 return redirect(url_for('register', error=404))
         else:
             try:
-                generated_otp = ''
-                for i in range(4):
-                    generated_otp += str(random.randint(0,9))
-
-                session_register['verify-otp'] = generated_otp
-                mail_content = f"YOU'RE OTP PIN IS: {generated_otp}"
+                mail_content = f"YOU'RE OTP PIN IS: {session_register['otp']}"
                 #The mail addresses and password
                 sender_address = 'otpsender47@gmail.com'
                 sender_pass = 'xisnpznnkhkhcbls'
@@ -264,5 +266,5 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    serve(app, host='0.0.0.0', port=5500, threads=1, url_prefix='/machica') 
    

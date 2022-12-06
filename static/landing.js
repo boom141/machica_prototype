@@ -1,7 +1,6 @@
 var navbar = document.getElementById("navbar");
 const nav_links = document.querySelectorAll('.mx-2')
-let landing_urls = ['http://127.0.0.1:5000/', 'http://127.0.0.1:5000/#home', 
-'http://127.0.0.1:5000/#about', 'http://127.0.0.1:5000/#services', 'http://127.0.0.1:5000/#products']
+let landing_urls = [window.origin,`${window.origin}/#home`,`${window.origin}/#about`,`${window.origin}/#services`,`${window.origin}/#products`,]
 
 
 function getCurrentURL () {
@@ -12,7 +11,7 @@ function getCurrentURL () {
 for(let i=0; i<nav_links.length-2; i++){
   nav_links[i].addEventListener('click',()=>{
     if(!landing_urls.includes(String(getCurrentURL()))){
-        window.location = landing_urls[0]
+        window.location = window.origin
     }
   })
 }
@@ -65,5 +64,5 @@ function order_page(){
 }
 
 function login_page(){
-  window.location = 'http://127.0.0.1:5000/login'
+  window.location = `${window.origin}/login`
 }
