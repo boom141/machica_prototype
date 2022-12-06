@@ -68,7 +68,7 @@ def register(error):
             for i in range(4):
                 generated_otp += str(random.randint(0,9))
 
-            session_register['otp'] = generated_otp
+            session_register['gen-otp'] = generated_otp
             
             email_exist = machica_users.find_one({'email':session_register['user_email']})
             if email_exist:
@@ -92,7 +92,7 @@ def otp():
             user_otp = request.form['user-otp']
             
             try:
-                if user_otp == session_register['otp']:
+                if user_otp == session_register['gen-otp']:
 
                     new_user = add_users(session_register['firstname'],session_register['lastname'],session_register['gender']
                     ,session_register['phone_number'],session_register['user_email'],session_register['password'])
@@ -109,7 +109,7 @@ def otp():
                 return redirect(url_for('register', error=404))
         else:
             try:
-                mail_content = f"YOU'RE OTP PIN IS: {session_register['otp']}"
+                mail_content = f"YOU'RE OTP PIN IS: {session_register['gen-otp']}"
                 #The mail addresses and password
                 sender_address = 'otpsender47@gmail.com'
                 sender_pass = 'xisnpznnkhkhcbls'
@@ -263,7 +263,6 @@ def confirm(sender,data):
 def logout():
     session.pop('user', None)
     return redirect(url_for('landing'))
-
 
 if __name__ == '__main__':
     serve(app, host='0.0.0.0', port=5500, threads=1, url_prefix='/machica') 
