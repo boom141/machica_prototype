@@ -24,24 +24,48 @@
     </div>
 </section>
 <section id="about" class="section-attrib">
-    <div class="section-content section-2">
-        <div class="content-img content-attrib">
-            <img class="about-img" src="{{url_for('static', filename='images/about-img.jpg')}}" alt="">
-            <img class="about-divider" src="{{url_for('static', filename='images/about-divider.png')}}" alt="">
-        </div>
-        <div class="site-about">
-            <h1><span style="color: #003A33">"Your smile</span> is our passion"</h1><br>
-            <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                <br>
-                <br>
-                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-                The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, 
-                content here', making it look like readable English.
-            </p>
-            <div class="site-buttons">
-                <div class="site-btn book-online"><a href="#" style="font-weight:500">read more...</a></div>
+    <div class="section-content-about section-2">
+        <h1 style="font-size: 4rem; "><span style="color: #003A33">About</span> Us</h1>
+        <div class="about-section">
+            <div class="about-border">
+                <div class="qoute-marks">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; padding: 5px 5px; transform: scaleX(-1);" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; margin-left: auto; padding: 5px 5px;" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                </div>
+                <div class="border-content">
+                    <h5 style="margin-left: -.1rem; font-weight: 600; pointer-events: none;">THE<span style="color: #003A33; pointer-events: none;"> VISION</span></h5>
+                    <p style="pointer-events: none;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+            <div class="about-border">
+                <div class="qoute-marks">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; padding: 5px 5px; transform: scaleX(-1);" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; margin-left: auto; padding: 5px 5px;" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                </div>
+                <div class="border-content">
+                    <h5 style="margin-left: -.1rem; font-weight: 600; pointer-events: none;">THE<span style="color: #003A33; pointer-events: none;"> MISSION</span></h5>
+                    <p style="pointer-events: none;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+            <div class="about-border">
+                <div class="qoute-marks">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; padding: 5px 5px; transform: scaleX(-1);" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; margin-left: auto; padding: 5px 5px;" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                </div>
+                <div class="border-content">
+                    <h5 style="margin-left: -.1rem; font-weight: 600; pointer-events: none;">THE<span style="color: #003A33; pointer-events: none;"> VALUES</span></h5>
+                    <p style="pointer-events: none;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+            </div>
+            <div class="about-border">
+                <div class="qoute-marks">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; padding: 5px 5px; transform: scaleX(-1);" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                    <img style="background-color: #003A33; height: 30px; width: 30px; margin-left: auto; padding: 5px 5px;" src="https://img.icons8.com/ios/50/FFFFFF/quote-right.png" alt="">
+                </div>
+                <div class="border-content">
+                    <h5 style="margin-left: -.1rem; font-weight: 600; pointer-events: none;">THE<span style="color: #003A33; pointer-events: none;"> PEOPLE</span></h5>
+                    <p style="pointer-events: none;">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -50,35 +74,47 @@
     <div class="section-content-services section-3">
         <h1><span style="color: #003A33">Dental</span> Services</h1>
         <div class="list-services">   
-            <div class="service-type">
+            <div class="service-type service-hover">
+                <img class="bck-btn" id="bck-btn" src="https://img.icons8.com/glyph-neue/64/003A33/circled-left-2.png" alt="">
                 <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
-                <h5 class="h5-service"><span style="color: #003A33">Service</span> One</h5>
-                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <h5 class="h5-service" style="overflow: hidden;"><span style="color: #003A33">Service</span> One</h5>
+                <p style="font-weight:500; overflow: hidden;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="divider-service"></div>
             </div>
-            <div class="service-type">
+            <div class="service-type service-hover">
+                <img class="bck-btn" id="bck-btn" src="https://img.icons8.com/glyph-neue/64/003A33/circled-left-2.png" alt="">
                 <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
-                <h5 class="h5-service"><span style="color: #003A33">Service</span> Two</h5>
-                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <h5 class="h5-service" style="overflow: hidden;"><span style="color: #003A33">Service</span> Two</h5>
+                <p style="font-weight:500; overflow: hidden;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="divider-service"></div>
             </div>
-            <div class="service-type">
+            <div class="service-type service-hover">
+                <img class="bck-btn" id="bck-btn" src="https://img.icons8.com/glyph-neue/64/003A33/circled-left-2.png" alt="">
                 <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
-                <h5 class="h5-service"><span style="color: #003A33">Service</span> Three</h5>
-                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <h5 class="h5-service" style="overflow: hidden;"><span style="color: #003A33">Service</span> Three</h5>
+                <p style="font-weight:500; overflow: hidden;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="divider-service"></div>
             </div>
-            <div class="service-type">
+            <div class="service-type service-hover">
+                <img class="bck-btn" id="bck-btn" src="https://img.icons8.com/glyph-neue/64/003A33/circled-left-2.png" alt="">
                 <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
-                <h5 class="h5-service"><span style="color: #003A33">Service</span> Four</h5>
-                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <h5 class="h5-service" style="overflow: hidden;"><span style="color: #003A33">Service</span> Four</h5>
+                <p style="font-weight:500; overflow: hidden;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="divider-service"></div>
             </div>
-            <div class="service-type">
+            <div class="service-type service-hover">
+                <img class="bck-btn" id="bck-btn" src="https://img.icons8.com/glyph-neue/64/003A33/circled-left-2.png" alt="">
                 <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
-                <h5 class="h5-service"><span style="color: #003A33">Service</span> Five</h5>
-                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <h5 class="h5-service" style="overflow: hidden;"><span style="color: #003A33">Service</span> Five</h5>
+                <p style="font-weight:500; overflow: hidden;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="divider-service"></div>
             </div>
-            <div class="service-type">
+            <div class="service-type service-hover">
+                <img class="bck-btn" id="bck-btn" src="https://img.icons8.com/glyph-neue/64/003A33/circled-left-2.png" alt="">
                 <img src="{{url_for('static', filename='images/service-ico.png')}}" alt="">
-                <h5 class="h5-service"><span style="color: #003A33">Service</span> Six</h5>
-                <p style="font-weight:500">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <h5 class="h5-service" style="overflow: hidden;"><span style="color: #003A33">Service</span> Six</h5>
+                <p style="font-weight:500; overflow: hidden;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+                <div class="divider-service"></div>
             </div>
         </div>
     </div>
@@ -120,6 +156,7 @@
 <section id="contacts" class="section-attrib">
     <div class="section-content section-5">
         <div class="contact-div">
+            <span class="contact-filler"></span>
             <div class="site-trademark">
                 <img class="trademark-logo" src="{{url_for('static', filename='images/nav_logo.png')}}" alt="">
                 <img class="trademark-divider" src="{{url_for('static', filename='images/trademark-divider.png')}}" alt="">

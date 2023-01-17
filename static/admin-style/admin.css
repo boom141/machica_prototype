@@ -1,0 +1,217 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: .5rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #808080; 
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(105, 105, 105); 
+  }
+
+
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.side-texts{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    margin-top: .5rem;
+    position: relative;
+    z-index: 2;
+    transition: 1s cubic-bezier(0.21, 0.05, 0, 1.11);
+}
+
+
+.menu-layout{
+    height: 100vh;
+    width: 20%;
+    margin-left: -1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: .5rem;
+}
+
+.menu-style{
+    background-color: #337c73;
+}
+
+.admin-account{
+    width: 100%;
+    background-image:linear-gradient(to bottom, rgb(152 157 154 / 0%),rgb(21, 46, 42)), url(https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80);
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 1rem 1rem;
+}
+
+.admin-text{
+    font-size: .8rem;
+    color: white;
+}
+
+.menu-links{
+    width: -webkit-fill-available;
+    height: inherit;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 1rem;
+}
+
+.navigation-container{
+    width: 17rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: .7rem;
+    overflow: hidden;
+    border-radius: 10px;
+    padding-left: .3rem;
+    position: relative;
+    cursor: pointer;
+    inset: 1rem;
+}
+
+.navigation-container::before{
+    background: rgb(255, 255, 255);
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .5s cubic-bezier(0.21, 0.05, 0, 1.11);
+    z-index: 1;
+}
+
+.navigation-container:hover::before{
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
+.navigation-container:hover > .side-texts{
+    color: #337c73!important;
+}
+svg{
+    fill: white;
+    transition: 1s cubic-bezier(0.21, 0.05, 0, 1.11);
+}
+
+.navigation-container:hover > svg{
+    fill: #337c73!important;
+}
+
+.user-list{
+    height: 100vh;
+    width: 30%;
+    padding: 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgba(218, 218, 218, 0.486);
+}
+
+.user-header{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-form{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.admin-form input{
+    width: 100%;
+    padding: .3rem .3rem;
+    border: 1px solid #337c73;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.312);
+}
+
+.user-container{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: .5rem;
+    overflow-y: auto; 
+}
+
+.user-block-container{
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    row-gap: .5rem;
+    overflow-y: auto;
+}
+
+.user-block{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.312);
+    position: relative;
+    align-items: center;
+    cursor: pointer;
+    background-color: white;
+}
+
+.user-block::before{
+    background: #337c73;
+    content: "";
+    inset: 0;
+    position: absolute;
+    width: 5px;
+    height: 100%;
+    transform-origin: bottom;
+    z-index: 1;
+}
+
+.user-text{
+    width: 100%;
+    pointer-events: none;
+}
+

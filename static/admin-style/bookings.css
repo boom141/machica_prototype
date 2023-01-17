@@ -1,0 +1,58 @@
+.booking-admin{
+    height: 100%;
+    row-gap: 0;
+}
+
+.apt-block{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 1rem;
+}
+
+.date-section{
+    height: 100%;
+    width: 17%;
+    background-color: #337c73;
+}
+
+.date-section, .book-details{  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.book-details{
+    height: auto;
+    width: auto;
+    margin-top: 1.5rem;
+    padding: 0;
+    text-align: start;
+}
+
+.booking-button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem .8rem;
+    width: auto;
+    height: auto;
+    column-gap: .5rem;
+    background-color: #337c73;
+    border-radius: 15px;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+
+
+
+.bookings-section-main{
+    margin-top: -2rem;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}

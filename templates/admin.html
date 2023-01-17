@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='admin-style/admin.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='admin-style/dashboard.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='admin-style/bookings.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='admin-style/orders.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='admin-style/loading.css')}}">
+    <title>Admin Control</title>
+</head>
+<body> 
+    <div class="side-menu menu-layout menu-style">
+        <div class="admin-account">
+            <h5 class="admin-text">Admin Account</h5>
+            <h5 class="admin-text">adminAccount@email.com</h5>
+        </div>
+        <div class="menu-links">
+            <div class="navigation-container">
+                <?xml version="1.0" ?><svg style="height: 1.3rem; width: 1.3rem; position: relative; z-index: 2;"height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zm-1 7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4zm10 0a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v7zm1-10h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1z"/></svg>
+                <h5 class="side-texts">dashboard</h5>
+            </div>
+            <div class="navigation-container">
+                <?xml version="1.0" ?><svg style="height: 1.3rem; width: 1.3rem; position: relative; z-index: 2;" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32zM0 192H448V464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192zM64 304C64 312.8 71.16 320 80 320H112C120.8 320 128 312.8 128 304V272C128 263.2 120.8 256 112 256H80C71.16 256 64 263.2 64 272V304zM192 304C192 312.8 199.2 320 208 320H240C248.8 320 256 312.8 256 304V272C256 263.2 248.8 256 240 256H208C199.2 256 192 263.2 192 272V304zM336 256C327.2 256 320 263.2 320 272V304C320 312.8 327.2 320 336 320H368C376.8 320 384 312.8 384 304V272C384 263.2 376.8 256 368 256H336zM64 432C64 440.8 71.16 448 80 448H112C120.8 448 128 440.8 128 432V400C128 391.2 120.8 384 112 384H80C71.16 384 64 391.2 64 400V432zM208 384C199.2 384 192 391.2 192 400V432C192 440.8 199.2 448 208 448H240C248.8 448 256 440.8 256 432V400C256 391.2 248.8 384 240 384H208zM320 432C320 440.8 327.2 448 336 448H368C376.8 448 384 440.8 384 432V400C384 391.2 376.8 384 368 384H336C327.2 384 320 391.2 320 400V432z"/></svg>
+                <h5 class="side-texts">appointments</h5>
+            </div>
+            <div class="navigation-container">
+                <?xml version="1.0" ?><svg style="height: 1.5rem; width: 1.5rem; position: relative; z-index: 2;" baseProfile="tiny"  version="1.2" viewBox="0 0 24 24"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Layer_1"><g><path d="M20.756,5.345C20.565,5.126,20.29,5,20,5H6.181L5.986,3.836C5.906,3.354,5.489,3,5,3H2.75c-0.553,0-1,0.447-1,1    s0.447,1,1,1h1.403l1.86,11.164c0.008,0.045,0.031,0.082,0.045,0.124c0.016,0.053,0.029,0.103,0.054,0.151    c0.032,0.066,0.075,0.122,0.12,0.179c0.031,0.039,0.059,0.078,0.095,0.112c0.058,0.054,0.125,0.092,0.193,0.13    c0.038,0.021,0.071,0.049,0.112,0.065C6.748,16.972,6.87,17,6.999,17C7,17,18,17,18,17c0.553,0,1-0.447,1-1s-0.447-1-1-1H7.847    l-0.166-1H19c0.498,0,0.92-0.366,0.99-0.858l1-7C21.031,5.854,20.945,5.563,20.756,5.345z M18.847,7l-0.285,2H15V7H18.847z M14,7    v2h-3V7H14z M14,10v2h-3v-2H14z M10,7v2H7C6.947,9,6.899,9.015,6.852,9.03L6.514,7H10z M7.014,10H10v2H7.347L7.014,10z M15,12v-2    h3.418l-0.285,2H15z"/><circle cx="8.5" cy="19.5" r="1.5"/><circle cx="17.5" cy="19.5" r="1.5"/></g></g></svg>
+                <h5 class="side-texts">orders</h5>
+            </div>
+            <div style="margin-top: 10rem;"class="navigation-container">
+                <?xml version="1.0" ?><svg style="height: 1.5rem; width: 1.5rem; position: relative; z-index: 2;" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title/><g><path d="M20.4844,54H66a6,6,0,0,0,0-12H20.4844l7.7578-7.7578a5.9994,5.9994,0,0,0-8.4844-8.4844l-18,18a5.9979,5.9979,0,0,0,0,8.4844l18,18a5.9994,5.9994,0,1,0,8.4844-8.4844Z"/><path d="M90,0H42a5.9966,5.9966,0,0,0-6,6V18a6,6,0,0,0,12,0V12H84V84H48V78a6,6,0,0,0-12,0V90a5.9966,5.9966,0,0,0,6,6H90a5.9966,5.9966,0,0,0,6-6V6A5.9966,5.9966,0,0,0,90,0Z"/></g></svg>
+                <h5 class="side-texts">logout</h5>
+            </div>
+            
+        </div>
+        
+    </div>
+    {%block content%}
+    {%endblock%}
+    <div class="user-list">
+        <div class="user-header">
+            <h6 style="font-size: 2rem;">User List</h6>
+            <form class="admin-form" action="">
+                <input id="user-find" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="type the email...">
+                <button id="find-btn" type="button" class="btn btn-primary" style="background-color: rgba(218, 218, 218, 0); border: none; border-radius: 0px;"><img src="https://img.icons8.com/fluency-systems-filled/30/337c73/search-client.png"/></button>
+            </form>
+        </div>
+        <div class="user-container" id="user-container">
+            <div class="user-block-container" id="user-block-container"></div>
+            <div class="loading-wrapper-1">
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            </div>
+            <div class="empty-container-2">
+                <img src="https://img.icons8.com/ios-glyphs/30/808080/file-delete.png"/>
+                <h6 style="color: #808080;" >User list is empty</h6>
+            </div>
+            <div class="not-found" id="not-found">
+                <img src="https://img.icons8.com/fluency-systems-filled/48/337c73/user-not-found.png"/>
+                <h6 style="color: #337c73;" >User not found</h6>
+            </div>
+        </div>
+    </div> 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="{{url_for('static', filename='admin-style/admin.js')}}"></script>
+    <script src="{{url_for('static', filename='admin-style/data-html.js')}}"></script>
+    <script src="{{url_for('static', filename='admin-style/request-data.js')}}"></script>
+    <script src="{{url_for('static', filename='admin-style/dashboard.js')}}"></script>
+    <script src="{{url_for('static', filename='admin-style/booking.js')}}"></script>
+    <script src="{{url_for('static', filename='admin-style/orders.js')}}"></script>
+</body>
+</html>

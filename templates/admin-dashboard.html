@@ -1,0 +1,31 @@
+{%extends "admin.html"%}
+{%block title%}admin-dashboard{%endblock%}
+
+{%block content%}
+    <div class="main-admin">
+        <div class="panel-admin">
+            <h1 style="font-weight: 600;" >DASHBOARD</h1>
+            <div class="charts">
+                <div class="admin-charts" id="admin-charts-orders"></div>
+                <div class="admin-charts" id="admin-charts-bookings"></div>
+            </div>
+            <div class="admin-schedule">
+                <div class="schedule-header">
+                    <h4>Today's Schedule</h4>
+                    <div class="option-btn">
+                        <div class="btn-typ"><img src="https://img.icons8.com/ios-filled/30/337c73/alarm.png"/></div>
+                    </div>
+                </div>
+                <div class="bookings-container" id="booking-container">
+                    <div class="loading-wrapper-2">
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <div class="empty-container-1">
+                        <img src="https://img.icons8.com/ios-glyphs/30/808080/file-delete.png"/>
+                        <h6 style="color: #808080;" >Looks like today schedule is empty</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

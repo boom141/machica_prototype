@@ -1,10 +1,13 @@
-import smtplib,random
+import smtplib,random,string
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from flask import Flask, redirect,url_for,render_template,session,request,flash
+from confirmation_init import*
+from datetime import date
 from waitress import serve
 from mongo_init import*
-from settings import app
+from admin import*
+from settings import app, api
 
 @app.route('/', methods=['POST','GET'])
 def landing():
@@ -141,22 +144,31 @@ def otp():
 def appointment():  
     if 'user' in session:
         if request.method == 'POST':
+
+            session['transaction_type'] = 'Booking'
+            session['reference_id'] = get_referece_number()
+
             firstname = request.form['first-name']
             lastname = request.form['last-name']
             phone_number = request.form['phone-number']
             session['confirmation_email'] = request.form['email']
             date = request.form['date']
             time = request.form['time']
-            poa = request.form['POA']
+            session['entity_type'] = request.form['POA']
             msg = request.form['message']
 
+            # remove the form checker**************
             if(not firstname and not lastname and not phone_number and not date and not time):
                 flash(' You should check in on some of those fields above.')
                 return render_template('appointment.html',  user_in_session = session['user'][0].upper())
             else:
-                new_booking = add_booking(firstname,lastname,phone_number,session['confirmation_email'],date,time,poa,msg if msg else None)
+                new_booking = add_booking(firstname,lastname,phone_number,session['confirmation_email'],date,time,session['entity_type'],msg if msg else None,session['reference_id'])
                 machica_bookings.insert_one(new_booking)
-                return redirect(url_for('confirm', sender='booking_route'))
+
+                mail_content = Email_confirmation(session).generate_html()
+                if smtp_transactions(session['transaction_type'],mail_content,'html'):
+                    flash('Your booking has been confirmed. Check your email for details.')
+                    return redirect(url_for('appointment'))
         else:
             return render_template('appointment.html',  user_in_session = session['user'][0].upper())
     else:
@@ -166,113 +178,130 @@ def appointment():
 def order():
     if 'user' in session:
         if request.method == 'POST':
+
+            session['transaction_type'] = 'Order'
+            session['reference_id'] = get_referece_number()
+
             firstname = request.form['first-name']
             lastname = request.form['last-name']
             phone_number = request.form['phone-number']
             session['confirmation_email'] = request.form['email']
-            product = request.form['pr-name']
+            session['entity_type'] = request.form['pr-name']
             quantity = request.form['quantity']
             msg = request.form['message']
-
-            if(not firstname and not lastname and not phone_number and not product and not quantity):
+            order_date = str(date.today())
+            # remove the form checker**************
+            if(not firstname and not lastname and not phone_number and not session['entity_type'] and not quantity):
                 flash(' You should check in on some of those fields above.')
                 return render_template('order.html',  user_in_session = session['user'][0].upper())
             else:
-                new_order = add_orders(firstname,lastname,phone_number,session['confirmation_email'],product,quantity,msg if msg else None)
+                new_order = add_orders(firstname,lastname,phone_number,session['confirmation_email'],session['entity_type'],quantity,msg if msg else None,session['reference_id'],order_date)
                 machica_orders.insert_one(new_order)
-                return redirect(url_for('confirm', sender='order_route'))
+
+                mail_content = Email_confirmation(session).generate_html()
+                if smtp_transactions(session['transaction_type'],mail_content,'html'):
+                    flash('Your order has been confirmed. Check your email for details.')
+                    return redirect(url_for('order'))
+
         else:
             return render_template('order.html',  user_in_session = session['user'][0].upper())
     else:
         return redirect(url_for('login'))
 
-
-@app.route('/inquiry/<email>/<message>')
-def inquiry(email,message):
-
-    mail_content = f'User {email} ask,{message}' 
-    #The mail addresses and password
-    sender_address = 'inquirymachica20@gmail.com'
-    sender_pass = 'meqfxsvprfyejvwn'
-    receiver_address = 'Jvragudo6@gmail.com'
-    #Setup the MIME
-    message = MIMEMultipart()
-    message['From'] = sender_address
-    message['To'] = receiver_address
-    message['Subject'] = 'User Inquiry'   #The subject line
+def smtp_transactions(trsaction_type,mail_content,mail_type):
+    try:
+        #The mail addresses and password
+        sender_address = 'inquirymachica20@gmail.com'
+        sender_pass = 'meqfxsvprfyejvwn'
+        receiver_address = session['confirmation_email']
+        #Setup the MIME
+        message = MIMEMultipart()
+        message['From'] = sender_address
+        message['To'] = receiver_address
+        message['Subject'] = trsaction_type   #The subject line
+        
+        #The body and the attachments for the mail
+        message.attach(MIMEText(mail_content, mail_type))
     
-    #The body and the attachments for the mail
-    message.attach(MIMEText(mail_content, 'plain'))
-   
-    #Create SMTP session for sending the mail
-    session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
-    session.starttls() #enable security
-    session.login(sender_address, sender_pass) #login with mail_id and password
-    text = message.as_string()
-    session.sendmail(sender_address, receiver_address, text)
-    session.quit()
-    print('the mail was sent')
+        #Create SMTP session for sending the mail
+        session_confirm = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
+        session_confirm.starttls() #enable security
+        session_confirm.login(sender_address, sender_pass) #login with mail_id and password
+        text = message.as_string()
+        session_confirm.sendmail(sender_address, receiver_address, text)
+        session_confirm.quit()
 
-    return redirect(url_for('landing'))
+        return True
+    except: 
+        return False
+
+def get_referece_number():
+    reference_number = ''
+    for i in range(8):
+        if random.randint(1,2) == 1:
+             reference_number += random.choice(string.ascii_uppercase)
+        else:
+            reference_number += str(random.randint(0,9))
+            
+    return reference_number
+
+@app.route('/admin/login', methods=['POST','GET'])
+def admin_login():
+    # if 'admin' in session:
+    #     return redirect(url_for('admin_dashboard'))
+    # else:
+    #     if request.method == 'POST':
+    #         email = request.form['email']
+    #         password = request.form['password']
+            
+    #         admin_email_exist  =  machica_admins.find_one({'admin_email':email})
+    #         admin_email_pass = machica_admins.find_one({'admin_password':password})
+
+    #         if admin_email_exist and admin_email_pass :
+    #             session['admin'] = 'admin'
+    #             return redirect(url_for('admin_dashboard'))
+    #         else:
+    #             flash(' this admin account is not authorize.')
+    #             return redirect(url_for('admin_login'))
+
+    #     else:
+    #         return render_template('admin-login.html')
+    session['admin'] = 'admin'
+    return redirect(url_for('admin_dashboard'))
 
 
-@app.route('/email_confirmation/<sender>')
-def confirm(sender):
-    mail_content = f"""
-            <html>
-            <body>
-                <p><b>Your {'Order' if sender == 'order_route' else 'Booking'} is confirmed</b><br>
-                Have questions?.<br>
-                Message us at <a href="Jvragudo6@gmail.com">Jvragudo6@gmail.com</a> 
-                for more details.
-                </p>
-            </body>
-            </html>
-            """
-    #The mail addresses and password
-    sender_address = 'inquirymachica20@gmail.com'
-    sender_pass = 'meqfxsvprfyejvwn'
-    receiver_address = session['confirmation_email']
-    #Setup the MIME
-    message = MIMEMultipart()
-    message['From'] = sender_address
-    message['To'] = receiver_address
-    message['Subject'] = f"Machica {'Order' if sender == 'order_route' else 'Booking'}"   #The subject line
-    
-    #The body and the attachments for the mail
-    message.attach(MIMEText(mail_content, 'html'))
-   
-    #Create SMTP session for sending the mail
-    session_confirm = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
-    session_confirm.starttls() #enable security
-    session_confirm.login(sender_address, sender_pass) #login with mail_id and password
-    text = message.as_string()
-    session_confirm.sendmail(sender_address, receiver_address, text)
-    session_confirm.quit()
+@app.route('/admin/dashboard')
+def admin_dashboard():
+    if 'admin' in session:
+        return render_template('admin-dashboard.html')
+    else:
+        return redirect(url_for('landing'))
 
-    if sender == 'order_route':
-        flash('Your order has been confirmed. Check your email for details.')
-        return redirect(url_for('order'))
-    elif sender == 'booking_route':
-        flash('Your booking has been confirmed. Check your email for details.')
-        return redirect(url_for('appointment'))
+@app.route('/admin/booking')
+def admin_booking():
+    if 'admin' in session:
+        return render_template('admin-booking.html')
+    else:
+         return redirect(url_for('landing'))
 
+@app.route('/admin/order')
+def admin_order():
+    if 'admin' in session:
+        return render_template('admin-order.html')
+    else:
+        return redirect(url_for('landing'))
 
 @app.route('/logout')
 def logout():
-    session.pop('user', None)
-    session.pop('confirmation_email',None)
-    session.pop('firstname', None)
-    session.pop('lastname', None)
-    session.pop('gender', None)
-    session.pop('phone_number', None)
-    session.pop('registered_email', None)
-    session.pop('password', None)
-    session.pop('confirm_password', None)
+    session_keys = list(session)
+    for key in session_keys:
+        session.pop(key, None)
+
     return redirect(url_for('landing'))
 
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5500, debug=True)
     # serve(app, host='0.0.0.0', port=5500, threads=1, url_prefix='/machica') 
    

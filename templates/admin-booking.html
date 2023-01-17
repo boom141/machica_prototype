@@ -1,0 +1,30 @@
+{%extends "admin.html"%}
+{%block title%}admin-booking{%endblock%}
+
+{%block content%}
+    <div class="main-admin">
+        <div class="panel-admin">
+            <h1 style="font-weight: 600;" >Appointments</h1>
+            <!-- <div class="charts">
+                <div class="admin-charts" id="admin-charts"></div>
+            </div> -->
+            <div class="admin-schedule booking-admin">
+                <div class="schedule-header">
+                    <h4>Bookings</h4>
+                    <div class="option-btn">
+                        <div class="btn-typ"></div>
+                    </div>
+                </div>
+                <div class="bookings-section-main" id="bookings-section-main">
+                    <div class="loading-wrapper-3">
+                        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <div class="empty-container-4">
+                        <img src="https://img.icons8.com/ios-glyphs/30/808080/file-delete.png"/>
+                        <h6 style="color: #808080;" >Booking list is empty</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

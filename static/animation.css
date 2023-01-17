@@ -1,0 +1,9 @@
+@keyframes expand{
+    from{ width: 12rem; height: 12rem; }
+    to { width: 30rem; height: 30rem; }
+}
+
+@keyframes wrap{
+    from{width: 30rem; height: 30rem; }
+    to { width: 12rem; height: 12rem; }
+}

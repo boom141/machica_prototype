@@ -1,7 +1,7 @@
 .nav-bg{
     height: 5rem;
     width: 100%;
-    background-color: #003A33;
+    background-color: #337c73;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.927)!important;
 }
 
@@ -37,7 +37,9 @@
 	width: 325px;
 	font-size: 14px;
 }
-
+.transaction-form{
+	max-height: 30rem!important;
+}
 
 .modal-confirm .modal-content {
 	border-radius: 5px;
@@ -119,7 +121,7 @@
 .bg-modal{
     position: absolute;
     z-index: 1;
-    height: 103vh;
+    height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.433);
 	display: flex;
