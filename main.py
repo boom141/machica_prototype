@@ -302,6 +302,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5500, debug=True)
-    # serve(app, host='0.0.0.0', port=5500, threads=1, url_prefix='/machica') 
+    app.run()
+
    
