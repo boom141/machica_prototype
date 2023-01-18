@@ -16,7 +16,7 @@
     ],
 
     "function": {
-        "admin.py": {
+        "confirmation_init.py": {
           "memory": 3008,
           "maxDuration": 30
         }
