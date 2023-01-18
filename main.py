@@ -4,10 +4,9 @@ from email.mime.text import MIMEText
 from flask import Flask, redirect,url_for,render_template,session,request,flash
 from confirmation_init import*
 from datetime import date
-from waitress import serve
+# from waitress import serve
 from mongo_init import*
-from admin import*
-from settings import app, api
+from settings import app
 
 @app.route('/', methods=['POST','GET'])
 def landing():
@@ -302,6 +301,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
    

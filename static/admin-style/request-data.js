@@ -8,7 +8,7 @@ window.onload = () =>{
 }
 
 const get_user_list = () =>{
-    axios.get(`${window.origin}/admin/getUserList`)
+    axios.get(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/getUserList`)
     .then(res =>{
         if(res.data.length > 0){
             $('.loading-wrapper-1').fadeOut('slow', ()=>{
@@ -25,7 +25,7 @@ const get_user_list = () =>{
 }
 
 const get_user_history = (user) => {
-    return axios.post(`${window.origin}/admin/userHistory`, user)
+    return axios.post(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/userHistory`, user)
     .then(res => {
         return res.data
     })
@@ -96,7 +96,7 @@ find_btn.addEventListener('click', event =>{
         user_container.firstElementChild.remove()
     }
 
-    axios.post(`${window.origin}/admin/getUserList`,user_data)
+    axios.post(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/getUserList`,user_data)
     .then(res =>{
         if(res.data !== null){
             $('.loading-wrapper-1').fadeOut('slow')

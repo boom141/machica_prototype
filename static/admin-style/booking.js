@@ -1,5 +1,5 @@
 const get_booking_list = () =>{
-    axios.get(`${window.origin}/admin/BookingList`)
+    axios.get(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/BookingList`)
     .then(res =>{
         if(res.data.length > 0){
             $('.loading-wrapper-3').fadeOut('slow')
@@ -38,12 +38,11 @@ const load_booking_list = (data) =>{
 }
 
 const deleteAppointment = data =>{
-
     referenceId = data.split(':')[1].split('\n')[0]
     const formData = new FormData()
     formData.append('data', referenceId)
 
-    axios.post(`${window.origin}/admin/deleteList`, formData)
+    axios.post(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/deleteList`, formData)
     .then(res => {
         if(res.data === 'success'){
         window.location.reload()

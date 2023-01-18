@@ -1,5 +1,5 @@
 const get_total_status = () =>{
-    axios.get(`${window.origin}/admin/totalMonthSold`)
+    axios.get(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/totalMonthSold`)
     .then(res =>{
         load_sold_status(res.data)
         })
@@ -30,7 +30,7 @@ const load_sold_status = (data) =>{
 
 
 const get_today_schedule = () =>{
-    axios.get(`${window.origin}/admin/DailyAppointments`)
+    axios.get(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/DailyAppointments`)
     .then(res =>{
         if(res.data.length > 0){
             $('.loading-wrapper-2').fadeOut()

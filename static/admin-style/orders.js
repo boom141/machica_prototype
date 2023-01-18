@@ -1,5 +1,5 @@
 const get_order_list = () =>{
-    axios.get(`${window.origin}/admin/OrderList`)
+    axios.get(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/OrderList`)
     .then(res =>{
         if(res.data.length > 0){
             $('.loading-wrapper-4').fadeOut('slow')
@@ -34,11 +34,10 @@ const load_order_list = (data) =>{
 
 const deleteOrder = data =>{
     referenceId = data.split(':')[1].split('\n')[0]
-    console.log(referenceId)
     const formData = new FormData()
     formData.append('data', referenceId)
 
-    axios.post(`${window.origin}/admin/deleteOrder`, formData)
+    axios.post(`https://machica-mt8nuxrcx-boom141.vercel.app/admin/deleteOrder`, formData)
     .then(res => {
         if(res.data === 'success'){
         window.location.reload()
