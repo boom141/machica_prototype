@@ -1,7 +1,7 @@
 import smtplib,random,string
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from flask import Flask, redirect,url_for,render_template,session,request,flash
+from flask import redirect,url_for,render_template,session,request,flash
 from confirmation_init import*
 from datetime import date
 from mongo_init import*
@@ -164,8 +164,12 @@ def appointment():
                 machica_bookings.insert_one(new_booking)
 
                 mail_content = Email_confirmation(session).generate_html()
-                if smtp_transactions(session['transaction_type'],mail_content,'html'):
+
+                if  smtp_transactions(session['transaction_type'],mail_content,'html'):
                     flash('Your booking has been confirmed. Check your email for details.')
+                    return redirect(url_for('appointment'))
+                else:
+                    flash('Your booking has been confirmed. There might not be an email confiramtion because of a maintenance.')
                     return redirect(url_for('appointment'))
         else:
             return render_template('appointment.html',  user_in_session = session['user'][0].upper())
@@ -200,6 +204,9 @@ def order():
                 if smtp_transactions(session['transaction_type'],mail_content,'html'):
                     flash('Your order has been confirmed. Check your email for details.')
                     return redirect(url_for('order'))
+                else:
+                    flash('Your booking has been confirmed. There might not be an email confiramtion because of a maintenance.')
+                    return redirect(url_for('order'))
 
         else:
             return render_template('order.html',  user_in_session = session['user'][0].upper())
@@ -209,8 +216,8 @@ def order():
 def smtp_transactions(trsaction_type,mail_content,mail_type):
     try:
         #The mail addresses and password
-        sender_address = 'inquirymachica20@gmail.com'
-        sender_pass = 'meqfxsvprfyejvwn'
+        sender_address = 'confirmationmachica@gmail.com'
+        sender_pass = 'mslwcbtpsrrkqdcp'
         receiver_address = session['confirmation_email']
         #Setup the MIME
         message = MIMEMultipart()
@@ -230,7 +237,7 @@ def smtp_transactions(trsaction_type,mail_content,mail_type):
         session_confirm.quit()
 
         return True
-    except: 
+    except:
         return False
 
 def get_referece_number():
@@ -240,7 +247,7 @@ def get_referece_number():
              reference_number += random.choice(string.ascii_uppercase)
         else:
             reference_number += str(random.randint(0,9))
-            
+    
     return reference_number
 
 @app.route('/admin/login', methods=['POST','GET'])
@@ -300,6 +307,6 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run()
 
    
